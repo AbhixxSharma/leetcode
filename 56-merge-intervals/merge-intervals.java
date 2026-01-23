@@ -7,7 +7,7 @@ class Solution {
 
         int st=intervals[0][0];
         int end=intervals[0][1];
-        for(int i=0;i<intervals.length;i++){
+        for(int i=1;i<intervals.length;i++){
             int newst= intervals[i][0];
             int newend=intervals[i][1];
 
