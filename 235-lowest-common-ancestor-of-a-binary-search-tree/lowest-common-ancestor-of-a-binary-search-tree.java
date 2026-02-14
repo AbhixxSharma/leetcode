@@ -10,35 +10,53 @@
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        List<TreeNode> path1 = new ArrayList<>();
-        List<TreeNode> path2 = new ArrayList<>();
 
-        findPath(root, p, path1);
-        findPath(root, q, path2);
-         int i = 0;
-        while (i < path1.size() && i < path2.size()) {
 
-            if (path1.get(i) != path2.get(i)) {
-                break;
-            }
-            i++;
+
+        if(root==null || p==root|| q==root){
+            return root;
+        }
+        TreeNode left=lowestCommonAncestor(root.left,p,q);
+        TreeNode right= lowestCommonAncestor(root.right,p,q);
+        if(left==null){
+            return right;
+        }
+        else if(right==null){
+            return left;
         }
 
-        return path1.get(i-1);
+        else{
+            return root;
+        }
+    //     List<TreeNode> path1 = new ArrayList<>();
+    //     List<TreeNode> path2 = new ArrayList<>();
+
+    //     findPath(root, p, path1);
+    //     findPath(root, q, path2);
+    //      int i = 0;
+    //     while (i < path1.size() && i < path2.size()) {
+
+    //         if (path1.get(i) != path2.get(i)) {
+    //             break;
+    //         }
+    //         i++;
+    //     }
+
+    //     return path1.get(i-1);
         
-    }
+    // }
 
-    public boolean findPath(TreeNode root,TreeNode target,List<TreeNode> list){
-        if(root==null) return false;
+    // public boolean findPath(TreeNode root,TreeNode target,List<TreeNode> list){
+    //     if(root==null) return false;
 
-        list.add(root);
-         if (root == target) return true;
+    //     list.add(root);
+    //      if (root == target) return true;
 
-        if(findPath(root.left,target,list)||findPath(root.right,target,list)){
-            return true;
-        }
+    //     if(findPath(root.left,target,list)||findPath(root.right,target,list)){
+    //         return true;
+    //     }
 
-        list.remove(list.size()-1);
-        return false;
+    //     list.remove(list.size()-1);
+    //     return false;
     }
 }
